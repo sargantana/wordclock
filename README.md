@@ -45,7 +45,7 @@ https://www.mikrocontroller.net/articles/WordClock_mit_WS2812
 
 ![WordMatrix used in my version](WordMatrix.png)
 
-There is a 3d printable .stl of this used faceplate ![here](/CAD files/faceplate.stl)
+There is a 3d printable .stl of this used faceplate ![here](github.com/sargantana/wordclock/CAD files/faceplate.stl)
 
 ### Step 2.5 (Optional tweaking)
 If desired you can change the color pattern for the lighting depending if it is PM or AM
