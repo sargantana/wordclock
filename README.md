@@ -7,9 +7,11 @@ licensed under GPL v2
 
 * __(25x) WS2812b-based adressable LEDs (i.e. NeoPixel)__
 > Number of Pixels used depends on you
+* __2x Momentary push buttons
 * __Arduino based Board__
 * __5V PSU capable of powering all Pixels at once + Arduino + overhead__
 > you can calculate an average of ~65mA per Pixel
+* __PCB__
 * __Frame (i. e. IKEA Ribba picture frame)__
 * __Faceplate__
 > I lasercut this out of the IKEA Ribba backplate but you could also 3d print it
