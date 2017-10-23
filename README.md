@@ -3,6 +3,11 @@ created by sargantana 2017
 
 licensed under GPL v2
 
+## Attenion!
+This code uses the Adafruit_Neopixel and Time libary. They are absolutly neccessary for this to work.
+Get NeoPixel Libary here: https://github.com/adafruit/Adafruit_NeoPixel
+Get Time Libary here: https://github.com/PaulStoffregen/Time
+
 ## Recommended Hardware
 
 * __(25x) WS2812b-based adressable LEDs (i.e. NeoPixel)__
