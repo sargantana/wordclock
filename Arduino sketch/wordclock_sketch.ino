@@ -18,6 +18,26 @@
 #include <WordMatrix.h>
 #include <Pins.h>
 
+//---------------------------------------------------START-OF-USER-DEFINED-SETUP-AREA
+// RGB values for AM
+int AMr=0;
+int AMg=0;
+int AMb=255;
+
+// RGB values for PM
+int PMr=0;
+int PMg=255;
+int PMb=0;
+
+// Set starting time here in hh-mm-ss dd.mm.yyyy format
+int start_hour=12;
+int start_min=0;
+int start_sec=0;
+int start_day=31;
+int start_month=10;
+int start_year=2017;
+//-----------------------------------------------------END-OF-USER-DEFINED-SETUP-AREA
+
 // Use NeoPixel libary to set up your strip
 Adafruit_NeoPixel pixels = Adafruit_NeoPixel(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
 
@@ -32,23 +52,13 @@ int h;
 int m;
 int s;
 
-// RGB values for AM
-int AMr=0;
-int AMg=0;
-int AMb=255;
-
-// RGB values for PM
-int PMr=0;
-int PMg=255;
-int PMb=0;
-
 void setup()
 {
 
   pinMode(MINUS, INPUT_PULLUP); //Define as input, enable pull-up resistor
   pinMode(PLUS, INPUT_PULLUP); //Define as input, enable pull-up resistor
   
-  setTime(12,0,0,31,10,2017); //Initialize current time as 10/31/2017 12:00
+  setTime(start_hour,start_min,start_sec,start_day,start_month,start_year); //Initialize starting time as defined
   pixels.begin(); //Begin Neopixel string
   Serial.begin(9600); //Begin Serial for debugging
   
@@ -57,18 +67,19 @@ void setup()
 void loop()
 {
   
-  //Declare integer array with size corresponding to number of Neopixels in chain
+  // Declare integer array with size coresponding to number of Neopixels in chain
   int individualPixels[NUMPIXELS];
   
-  for (int i=0, i<NUMPIXELS; i++) {
-individualPixels[i]=0;
+  // Fill integer array with zeros according to number of pixels
+  for (int z=0, z<NUMPIXELS; z++) {
+individualPixels[z]=0;
 }
   /* Check for button presses adjust time */
   minusCurrState=digitalRead(MINUS); //Get current state of MINUSFIVEMINS button
   
-  /* If current state is different from previous state and value is now LOW consider this as button press and subtract five minutes from current time */
+  /* If current state is different from previous state and value is now LOW consider this as button press and subtract STEP minutes from current time */
   if ((minusCurrState!=minusPrevState) && (minusCurrState==LOW)){
-    adjustTime(-STEP*60); //Shift time five minutes backwards
+    adjustTime(-STEP*60); //Shift time STEP minutes backwards
     minusPrevState=minusCurrState;
   }
   else{
@@ -77,9 +88,9 @@ individualPixels[i]=0;
   
   plusCurrState=digitalRead(PLUS); //Get current state of PLUSFIVEMINS button
   
-  /* If current state is different from previous state and value is now LOW consider this as button press and add five minutes from current time */
+  /* If current state is different from previous state and value is now LOW consider this as button press and add STEP minutes to current time */
   if ((plusCurrState!=plusPrevState) && (plusCurrState==LOW)){
-    adjustTime(STEP*60); //Shift time five minutes forwards
+    adjustTime(STEP*60); //Shift time STEP minutes forwards
     plusPrevState=plusCurrState;
   }
     else{
