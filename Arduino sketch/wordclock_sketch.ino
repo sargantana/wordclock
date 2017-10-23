@@ -15,8 +15,8 @@
 #include <Adafruit_NeoPixel.h>
 #include <avr/power.h>
 #include <TimeLib.h>
-#include <WordMatrix.h>
-#include <Pins.h>
+#include "WordMatrix.h"
+#include "Pins.h"
 
 //---------------------------------------------------START-OF-USER-DEFINED-SETUP-AREA
 // RGB values for AM
@@ -71,7 +71,7 @@ void loop()
   int individualPixels[NUMPIXELS];
   
   // Fill integer array with zeros according to number of pixels
-  for (int z=0, z<NUMPIXELS; z++) {
+  for (int z=0; z<NUMPIXELS; z++) {
 individualPixels[z]=0;
 }
   /* Check for button presses adjust time */
@@ -234,14 +234,14 @@ individualPixels[z]=0;
   /* Light pixels corresponding to current time */
   for (int i=0; i<sizeof(individualPixels); i++){
     if (individualPixels[i]==1){
-		if (isAM() == true){
-			pixels.setPixelColor(i, pixels.Color(AMr,AMg,AMb)); //Set Neopixel color to AM Settings
-		}
-			else{
-				if (isPM() == true){
-			pixels.setPixelColor(i, pixels.Color(PMr, PMg, PMb)); //Set Neopixel color to PM Settings
-		}
-			}
+      if (isAM() == true){
+        pixels.setPixelColor(i, pixels.Color(AMr,AMg,AMb)); //Set Neopixel color to AM Settings
+    }
+      else{
+        if (isPM() == true){
+        pixels.setPixelColor(i, pixels.Color(PMr, PMg, PMb)); //Set Neopixel color to PM Settings
+    }
+      }
     }
     else{
       pixels.setPixelColor(i,pixels.Color(0,0,0));
