@@ -3,6 +3,15 @@ created by sargantana 2017
 
 licensed under GPL v2
 
+### What is this?
+A WordClock is a device displaying the time in 5 minutes increments on a matrix of words spelling the time.
+This Project deals with a DIY approach as a alternative for the 1.250€ priced original product.
+
+Time is displayed in 12h format, chnging color from green to blue depending if its AM or PM.
+Pins.h is used to define the I/O of the used board, the increment you want to increase/decrease the time while setting it (recommended are 5 minutes for obvious reasons).
+Use WordMatrix.h to define the layout of your word matrix. The sketch is written to tell time in english language, but as I am german I changed a few things in my specific setup. Feel free to improve and enhance the sketch for other languages or setups.
+
+
 ## Attenion!
 This code uses the Adafruit_Neopixel and Time libary. They are absolutly neccessary for this to work.
 
