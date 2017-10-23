@@ -1,5 +1,6 @@
 # DIY ARDUINO WORDCLOCK
 created by sargantana 2017
+
 licensed under GPL v2
 
 ## Circuit diagram 
@@ -21,6 +22,7 @@ Change pins in Pins.h according to your setup
 Change the Layout/Sequence of your word matrix in WordMatrix.h according to your setup
 
 I used an older version of the WordClockFacePlate by microcontroller.net
+
 A Newer version (in german) can be found here:
 https://www.mikrocontroller.net/articles/WordClock_mit_WS2812
 
@@ -28,6 +30,7 @@ https://www.mikrocontroller.net/articles/WordClock_mit_WS2812
 
 ## Step 2.5 (Optional tweaking)
 If desired you can cahnge the color pattern for the lighting depending if it is PM or AM
+
 You can find these in wordclock/Arduino sketch/wordclock_sketch.ino
 
 Example for AM color settings (pure blue)
