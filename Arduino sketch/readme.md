@@ -18,7 +18,7 @@ I used an older version of the WordClockFacePlate by microcontroller.net
 A Newer version (in german) can be found here:
 https://www.mikrocontroller.net/articles/WordClock_mit_WS2812
 
-![WordMatrix used in my version] (/Wordclock-frontplatte-v2.png)
+![WordMatrix used in my version] (Wordclock-frontplatte-v2.png)
 
 ## Step 3
 After double checking everything upload to arduino. Turn on the wordclock and set the time with the buttons.
