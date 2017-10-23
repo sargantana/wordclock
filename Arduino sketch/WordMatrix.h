@@ -18,6 +18,11 @@ ELFNEUNEINS
 BZWÖLFRHUHR
 
 */
+#ifndef WordMatrix_h  // Don't toucht this!
+#define WordMatrix_h  // Don't toucht this!
+#include "Arduino.h"  // Don't toucht this!
+
+//--------------------------------------------------------------------------
 
 #define IT			0
 #define IS			1
@@ -42,3 +47,7 @@ BZWÖLFRHUHR
 #define ELEVEN		20
 #define TWELVE		24
 #define OCLOCK		23
+
+//--------------------------------------------------------------------------
+
+#endif  // Don't toucht this!
