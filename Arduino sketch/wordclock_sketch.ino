@@ -4,8 +4,8 @@
 -----------------CODE-------------------
   Arduino based Wordclock with NeoPixels  
   
-  Get NeoPixel Libary here:https://github.com/adafruit/Adafruit_NeoPixel
-  Get Time Libary here:: https://github.com/PaulStoffregen/Time
+  Get NeoPixel Libary here: https://github.com/adafruit/Adafruit_NeoPixel
+  Get Time Libary here: https://github.com/PaulStoffregen/Time
   
   An Array is build with different states of time been spelled out by words and combinations.
   Time Libary is used to keep time and after its parsed Neopixels light up according to the flags.
