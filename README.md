@@ -26,7 +26,9 @@ I used an older version of the WordClockFacePlate by microcontroller.net
 A Newer version (in german) can be found here:
 https://www.mikrocontroller.net/articles/WordClock_mit_WS2812
 
-![WordMatrix used in my version](Wordclock-frontplatte-v2.png)
+![WordMatrix used in my version](WordMatrix.png)
+
+There is a 3d printable .stl of this used faceplate here ./CAD files/faceplate.stl
 
 ## Step 2.5 (Optional tweaking)
 If desired you can cahnge the color pattern for the lighting depending if it is PM or AM
