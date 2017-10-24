@@ -80,7 +80,7 @@ void loop()
   int individualPixels[NUMPIXELS];
   
   // Fill integer array with zeros according to number of pixels
-  for (int z=0; z<NUMPIXELS; z++) {
+  for (int i=0; i<NUMPIXELS; i++) {
 individualPixels[z]=0;
 }
   /* Check for button presses adjust time */
