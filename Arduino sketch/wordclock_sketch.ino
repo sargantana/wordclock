@@ -36,6 +36,13 @@ int start_sec=0;
 int start_day=31;
 int start_month=10;
 int start_year=2017;
+
+
+//Different Settings
+
+int EdgePixels=1; //Set this to 1 to enable EdgePixels
+int STEP =5; 			// Declare step size of time adjustement
+
 //-----------------------------------------------------END-OF-USER-DEFINED-SETUP-AREA
 
 // Use NeoPixel libary to set up your strip
@@ -51,6 +58,7 @@ int plusCurrState=HIGH;
 int h;
 int m;
 int s;
+int d; //dump for last digit of minutes
 
 void setup()
 {
@@ -100,7 +108,7 @@ individualPixels[z]=0;
   /* Get current time */
   h=hourFormat12();    // Returns the hour of current time in 12h format
   m=minute();        // Returns the minute of current time
-  s=second();        // Returns the second of current time
+  s=second();        // Returns the second of current time		
   
   Serial.print(h);   // for serial debugging print out the current time
   Serial.print(":");
@@ -108,12 +116,38 @@ individualPixels[z]=0;
   Serial.print(":");
   Serial.println(s);
 
+  /* Light Edge Pixels for */
+ if (EdgePixels = 1) {
+  
+  int d = m%10  // Last digits of minutes stored to d
+  
+  /* Minutes 1 and 6 - Light EdgePixel + */
+  if ((d=1) || (d=6)){ 
+  individualPixels[+]=1;
+  }
+  
+  /* Minutes 2 and 7 - Light EdgePixel ++ */
+  if ((d=2) || (d=7)){
+  individualPixels[++]=1;
+  }
+  
+  /* Minutes 3 and 8 - Light EdgePixel +++ */
+  if ((d=3) || (d=8)){
+  individualPixels[+++]=1;
+  }
+  
+  /* Minutes 4 and 9 - Light EdgePixel ++++ */
+  if ((d=4) || (d=9)){
+  individualPixels[++++]=1;
+  }
+  
+}
   
   /* Parse time values to light corresponding pixels */
   individualPixels[IT]=1; //Light "IT"
   individualPixels[IS]=1; //Light "IS" 
   
-  /* Minutes between 0-5 - Light "UHR" */
+  /* Minutes between 0-5 - Light "CLOCK" */
   if ((m>=0 && m<5)){
     individualPixels[OCLOCK]=1;
   }
