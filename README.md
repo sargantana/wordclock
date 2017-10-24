@@ -5,12 +5,13 @@ licensed under GPL v2
 
 ### What is this?
 A WordClock is a device displaying the time in 5 minutes increments on a matrix of words spelling the time.
-This Project deals with a DIY approach as a alternative for the 1.250€ priced original product.
+This project deals with a DIY approach as an alternative for the 1.250€ priced original product.
 
 Time is displayed in 12h format, chnging color from green to blue depending if its AM or PM.
-Pins.h is used to define the I/O of the used board, the increment you want to increase/decrease the time while setting it (recommended are 5 minutes for obvious reasons).
+Pins.h is used to define the I/O of the used board.
 Use WordMatrix.h to define the layout of your word matrix. The sketch is written to tell time in english language, but as I am german I changed a few things in my specific setup. Feel free to improve and enhance the sketch for other languages or setups.
-
+In the Sketch itself are some parameters you may want to alter as you can change the increment you want to increase/decrease the time while setting it (recommended are 5 minutes for obvious reasons) or activate EdgePixels to light up and show minute accurate time by using four surplus pixels placed in the edge of the clock to light up for minutes 1&6, 2&7, 3&8 and 4&9.
+Future improvements are possible, if you have any ideas feel free to hit me up!
 
 ## Attenion!
 This code uses the Adafruit_Neopixel and Time libary. They are absolutly neccessary for this to work.
@@ -39,7 +40,6 @@ Change pins in Pins.h according to your setup
 ```
 #define MINUS         4   // Declare pin for + Button
 #define PLUS          5 	// Declare pin for - Button
-#define STEP          5 	// Declare step size of time adjustement
 #define PIN           3 	// Declare pin for NeoPixel DATA IN
 #define NUMPIXELS     25	// Declare amount of NeoPixels used
 ```
