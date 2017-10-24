@@ -19,15 +19,7 @@
 #include "Pins.h"
 
 //---------------------------------------------------START-OF-USER-DEFINED-SETUP-AREA
-// RGB values for AM
-int AMr=0;
-int AMg=0;
-int AMb=255;
 
-// RGB values for PM
-int PMr=0;
-int PMg=255;
-int PMb=0;
 
 // Set starting time here in hh-mm-ss dd.mm.yyyy format
 int start_hour=12;
@@ -42,6 +34,16 @@ int start_year=2017;
 
 int EdgePixels=1; //Set this to 1 to enable EdgePixels
 int STEP =5; 			// Declare step size of time adjustement
+
+// RGB values for AM
+int AMr=0;
+int AMg=0;
+int AMb=255;
+
+// RGB values for PM
+int PMr=0;
+int PMg=255;
+int PMb=0;
 
 //-----------------------------------------------------END-OF-USER-DEFINED-SETUP-AREA
 
@@ -58,7 +60,6 @@ int plusCurrState=HIGH;
 int h;
 int m;
 int s;
-int d; //dump for last digit of minutes
 
 void setup()
 {
@@ -83,7 +84,7 @@ void loop()
 individualPixels[z]=0;
 }
   /* Check for button presses adjust time */
-  minusCurrState=digitalRead(MINUS); //Get current state of MINUSFIVEMINS button
+  minusCurrState=digitalRead(MINUS); //Get current state of MINUS button
   
   /* If current state is different from previous state and value is now LOW consider this as button press and subtract STEP minutes from current time */
   if ((minusCurrState!=minusPrevState) && (minusCurrState==LOW)){
@@ -94,7 +95,7 @@ individualPixels[z]=0;
    minusPrevState=minusCurrState; 
   }
   
-  plusCurrState=digitalRead(PLUS); //Get current state of PLUSFIVEMINS button
+  plusCurrState=digitalRead(PLUS); //Get current state of PLUS button
   
   /* If current state is different from previous state and value is now LOW consider this as button press and add STEP minutes to current time */
   if ((plusCurrState!=plusPrevState) && (plusCurrState==LOW)){
