@@ -44,8 +44,8 @@ BZWÖLFRHUHR
 #define ELEVEN		20
 #define TWELVE		24
 #define OCLOCK		23
-#define +			00 //EdgePixel 1
-#define ++			00 //EdgePixel 2
-#define +++			00 //EdgePixel 3
-#define ++++		00 //EdgePixel 4
+#define min1		00 //EdgePixel 1
+#define min2    00 //EdgePixel 2
+#define min3    00 //EdgePixel 3
+#define min4    00 //EdgePixel 4
 //--------------------------------------------------------------------------
