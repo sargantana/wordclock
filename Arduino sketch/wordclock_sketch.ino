@@ -81,7 +81,7 @@ void loop()
   
   // Fill integer array with zeros according to number of pixels
   for (int i=0; i<NUMPIXELS; i++) {
-individualPixels[z]=0;
+individualPixels[i]=0;
 }
   /* Check for button presses adjust time */
   minusCurrState=digitalRead(MINUS); //Get current state of MINUS button
@@ -120,26 +120,26 @@ individualPixels[z]=0;
   /* Light Edge Pixels for */
  if (EdgePixels = 1) {
   
-  int d = m%10  // Last digits of minutes stored to d
+  int d = m%10;  // Last digits of minutes stored to d
   
   /* Minutes 1 and 6 - Light EdgePixel + */
   if ((d=1) || (d=6)){ 
-  individualPixels[+]=1;
+  individualPixels[min1]=1;
   }
   
   /* Minutes 2 and 7 - Light EdgePixel ++ */
   if ((d=2) || (d=7)){
-  individualPixels[++]=1;
+  individualPixels[min2]=1;
   }
   
   /* Minutes 3 and 8 - Light EdgePixel +++ */
   if ((d=3) || (d=8)){
-  individualPixels[+++]=1;
+  individualPixels[min3]=1;
   }
   
   /* Minutes 4 and 9 - Light EdgePixel ++++ */
   if ((d=4) || (d=9)){
-  individualPixels[++++]=1;
+  individualPixels[min4]=1;
   }
   
 }
