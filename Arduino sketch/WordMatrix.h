@@ -26,26 +26,27 @@ BZWÖLFRHUHR
 #define FIVE_min	2
 #define TEN_min		4
 #define QUARTER		6
-#define QUARTER2	7  //as these longer words tend to need more LEDs
-#define HALF		8
-#define PAST		10
-#define TO			3
-#define ONE			22
-#define TWO			12
-#define THREE		5
-#define FOUR		13
-#define FIVE		11
-#define SIX			17
+#define QUARTER2	5  //as these longer words tend to need more LEDs
+#define HALF		7
+#define PAST		9
+#define TO			8
+#define TO2                      3
+#define ONE			21
+#define TWO			11
+#define THREE		18
+#define FOUR		12
+#define FIVE		10
+#define SIX			16
 #define SEVEN		14
-#define SEVEN2		15  //as these longer words tend to need more LEDs
-#define EIGHT		18
-#define NINE		21
-#define TEN			16
-#define ELEVEN		20
-#define TWELVE		24
-#define OCLOCK		23
-#define min1		00 //EdgePixel 1
-#define min2    00 //EdgePixel 2
-#define min3    00 //EdgePixel 3
-#define min4    00 //EdgePixel 4
+#define SEVEN2		13  //as these longer words tend to need more LEDs
+#define EIGHT		17
+#define NINE		20
+#define TEN			15
+#define ELEVEN		19
+#define TWELVE		23
+#define OCLOCK		22
+#define min1			27 //EdgePixel 1
+#define min2			26 //EdgePixel 2
+#define min3			25 //EdgePixel 3
+#define min4		24 //EdgePixel 4
 //--------------------------------------------------------------------------
