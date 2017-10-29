@@ -343,4 +343,4 @@ if (NightDim >= 1) { // Dim Pixels by declared value between 10 pm and 6 am
   
   pixels.show(); //Display Neopixel color
   
-}M
+}
