@@ -22,10 +22,10 @@
 
 
 // Set starting time here in hh-mm-ss dd.mm.yyyy format
-int start_hour=12;
+int start_hour=18;
 int start_min=0;
 int start_sec=0;
-int start_day=31;
+int start_day=29;
 int start_month=10;
 int start_year=2017;
 
@@ -34,14 +34,18 @@ int start_year=2017;
 
 int EdgePixels=1; //Set this to 1 to enable EdgePixels
 int STEP =5; 			// Declare step size of time adjustement
+int NightDim=2;     //Set this above 0 to acivate Night Dim, corresponding to the amount you wanted the light dimmed
+
+
+
 
 // RGB values for AM
-int AMr=0;
-int AMg=0;
+int AMr=255;
+int AMg=255;
 int AMb=255;
 
 // RGB values for PM
-int PMr=0;
+int PMr=255;
 int PMg=255;
 int PMb=0;
 
@@ -60,6 +64,7 @@ int plusCurrState=HIGH;
 int h;
 int m;
 int s;
+int d=m%10;
 
 void setup()
 {
@@ -120,8 +125,6 @@ individualPixels[i]=0;
   /* Light Edge Pixels for */
  if (EdgePixels = 1) {
   
-  int d = m%10;  // Last digits of minutes stored to d
-  
   /* Minutes 1 and 6 - Light EdgePixel + */
   if ((d=1) || (d=6)){ 
   individualPixels[min1]=1;
@@ -129,71 +132,126 @@ individualPixels[i]=0;
   
   /* Minutes 2 and 7 - Light EdgePixel ++ */
   if ((d=2) || (d=7)){
+  individualPixels[min1]=1;
   individualPixels[min2]=1;
   }
   
   /* Minutes 3 and 8 - Light EdgePixel +++ */
   if ((d=3) || (d=8)){
+  individualPixels[min1]=1;
+  individualPixels[min2]=1;
   individualPixels[min3]=1;
   }
   
   /* Minutes 4 and 9 - Light EdgePixel ++++ */
   if ((d=4) || (d=9)){
+  individualPixels[min1]=1;
+  individualPixels[min2]=1;
+  individualPixels[min3]=1;
   individualPixels[min4]=1;
   }
-  
+  else {
+  individualPixels[min1]=0;
+  individualPixels[min2]=0;
+  individualPixels[min3]=0;
+  individualPixels[min4]=0;
+
+  }
 }
+
+if (NightDim >= 1) { // Dim Pixels by declared value between 10 pm and 6 am
+  if ((isPM()==true) && (h>=10) || (isAM()==true) && (h<=6)) 
+  {PMr=PMr/NightDim;
+  PMg=PMg/NightDim;
+  PMb=PMb/NightDim;
+  AMr=AMr/NightDim;
+  AMg=AMg/NightDim;
+  AMb=AMb/NightDim;}
+  }
+
   
   /* Parse time values to light corresponding pixels */
   individualPixels[IT]=1; //Light "IT"
   individualPixels[IS]=1; //Light "IS" 
   
   /* Minutes between 0-5 - Light "CLOCK" */
-  if ((m>=0 && m<5)){
+  if ((m>=0) && (m<5)){
     individualPixels[OCLOCK]=1;
   }
   
   /* Minutes between 5-10 or 55-60 - Light "FIVE_min" */
-  if ((m>=5 && m<10) || (m>=55 && m<60)){
+  if ((m>=5) && (m<10)){
     individualPixels[FIVE_min]=1;
-  }
-  
-  /* Minutes between 10-15 or 50-55 - Light "TEN_min" */
-  if ((m>=10 && m<15) || (m>=50 && m<55)){
-    individualPixels[TEN_min]=1;
-  }
-  
-  /* Minutes between 15-20 or 45-50 - Light "QUARTER" */
-  if ((m>=15 && m<20) || (m>=45 && m<50)){
-    individualPixels[QUARTER]=1;
-    individualPixels[QUARTER2]=1;
-  }
-  
-  /* Minutes between 20-25 or 40-45 - Light "TEN_min," "HALF" */
-  if ((m>=20 && m<25) || (m>=40 && m<45)){
-    individualPixels[TEN_min]=1;
-    individualPixels[HALF]=1;
-  }  
-
-  /* Minutes between 25-30 or 35-40 - Light "FIVE_min", "HALF" */
-  if ((m>=25 && m<30) || (m>=35 && m<40)){                                              
-    individualPixels[FIVE_min]=1;
-    individualPixels[HALF]=1;
-  }
-
-  /* Minutes between 30-35 - Light "HALF" */
-  if ((m>=30 && m<35)){
-    individualPixels[HALF]=1;
-  }
-  
-  /* Minutes between 5-35 - Light "PAST" */
-  if ((m>=5) && (m<35)){
     individualPixels[PAST]=1;
   }
   
-  /* Minutes between 35-60 - Light "TO" & MODIFY CURRENT HOUR VALUE */
-  if (m>=35){
+  /* Minutes between 10-15 or 50-55 - Light "TEN_min" */
+  if ((m>=10) && (m<15)){
+    individualPixels[TEN_min]=1;
+    individualPixels[PAST]=1;
+  }
+  
+  /* Minutes between 15-20 or 45-50 - Light "QUARTER" */
+  if ((m>=15) && (m<20)){
+    individualPixels[QUARTER]=1;
+    individualPixels[QUARTER2]=1;
+    individualPixels[PAST]=1;
+  }
+  
+  /* Minutes between 20-25 or 40-45 - Light "TEN_min," "HALF" */
+  if ((m>=20) && (m<25)){
+    individualPixels[TEN_min]=1;
+    individualPixels[HALF]=1;
+    individualPixels[TO2]=1;
+  }  
+
+  /* Minutes between 25-30 or 35-40 - Light "FIVE_min", "HALF" */
+  if ((m>=25) && (m<30)){                                              
+    individualPixels[FIVE_min]=1;
+    individualPixels[HALF]=1;
+    individualPixels[TO2]=1;
+  }
+
+  /* Minutes between 30-35 - Light "HALF" */
+  if ((m>=30) && (m<35)){
+    individualPixels[HALF]=1;
+  }
+  
+  /* Minutes between 35-40 - Light "FIVE_min", "PAST", "HALF" */
+  if ((m>=35) && (m<40)){
+    individualPixels[FIVE_min]=1;
+    individualPixels[HALF]=1;
+    individualPixels[PAST]=1;
+  }
+  
+  /* Minutes between 40-45 - Light "TEN_min", "PAST", "HALF" */
+  if ((m>=40) && (m<45)){
+    individualPixels[TEN_min]=1;
+    individualPixels[HALF]=1;
+    individualPixels[PAST]=1;
+  }
+  
+  /* Minutes between 45-50 - Light "QUARTER", "TO" */
+  if ((m>=45) && (m<50)){
+    individualPixels[QUARTER]=1;
+    individualPixels[QUARTER2]=1;
     individualPixels[TO]=1;
+  }
+
+  /* Minutes between 50-55 - Light "TEN_min", "TO" */
+  if ((m>=50) && (m<55)){
+    individualPixels[TEN_min]=1;
+    individualPixels[TO]=1;
+  }
+
+  /* Minutes between 55-00 - Light "FIVE_min", "TO" */
+  if ((m>=55) && (m<60)){
+    individualPixels[FIVE_min]=1;
+    individualPixels[TO]=1;
+  }
+
+  /* Minutes between 20-60 - MODIFY CURRENT HOUR VALUE */
+  if (m>=20){
     h++; //Add 1 from current hour
     /*Set time to twelve for hour around midnight, noon */
     if (h==0){
@@ -285,4 +343,4 @@ individualPixels[i]=0;
   
   pixels.show(); //Display Neopixel color
   
-}
+}M
