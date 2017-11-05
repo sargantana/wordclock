@@ -22,32 +22,27 @@
 
 
 // Set starting time here in hh-mm-ss dd.mm.yyyy format
-int start_hour=18;
+int start_hour=14;
 int start_min=0;
 int start_sec=0;
-int start_day=29;
-int start_month=10;
+int start_day=05;
+int start_month=11;
 int start_year=2017;
 
 
 //Different Settings
 
-int EdgePixels=1; //Set this to 1 to enable EdgePixels
 int STEP =5; 			// Declare step size of time adjustement
-int NightDim=2;     //Set this above 0 to acivate Night Dim, corresponding to the amount you wanted the light dimmed
-
-
-
 
 // RGB values for AM
-int AMr=255;
-int AMg=255;
-int AMb=255;
+int AMr=244;
+int AMg=146;
+int AMb=66;
 
 // RGB values for PM
-int PMr=255;
-int PMg=255;
-int PMb=0;
+int PMr=66;
+int PMg=134;
+int PMb=244;
 
 //-----------------------------------------------------END-OF-USER-DEFINED-SETUP-AREA
 
@@ -64,7 +59,6 @@ int plusCurrState=HIGH;
 int h;
 int m;
 int s;
-int d=m%10;
 
 void setup()
 {
@@ -122,51 +116,41 @@ individualPixels[i]=0;
   Serial.print(":");
   Serial.println(s);
 
-  /* Light Edge Pixels for */
- if (EdgePixels = 1) {
   
   /* Minutes 1 and 6 - Light EdgePixel + */
-  if ((d=1) || (d=6)){ 
+  if ((m=1) || (m=6) || (m=11) || (m=16) || (m=21) || (m=26) || (m=31) || (m=36) || (m=41) || (m=46) || (m=51) || (m=56)){ 
   individualPixels[min1]=1;
+    individualPixels[min2]=0;
+    individualPixels[min3]=0;
+    individualPixels[min4]=0;
+
   }
   
   /* Minutes 2 and 7 - Light EdgePixel ++ */
-  if ((d=2) || (d=7)){
+  if ((m=2) || (m=7) || (m=12) || (m=17) || (m=22) || (m=27) || (m=32) || (m=37) || (m=42) || (m=47) || (m=52) || (m=57)){
   individualPixels[min1]=1;
   individualPixels[min2]=1;
+    individualPixels[min3]=0;
+    individualPixels[min4]=0;
   }
   
   /* Minutes 3 and 8 - Light EdgePixel +++ */
-  if ((d=3) || (d=8)){
+  if ((m=3) || (m=8) || (m=13) || (m=18) || (m=23) || (m=28) || (m=33) || (m=38) || (m=43) || (m=48) || (m=53) || (m=58)){
   individualPixels[min1]=1;
   individualPixels[min2]=1;
   individualPixels[min3]=1;
+    individualPixels[min4]=0;
   }
   
   /* Minutes 4 and 9 - Light EdgePixel ++++ */
-  if ((d=4) || (d=9)){
+  if ((m=4) || (m=9) || (m=14) || (m=19) || (m=24) || (m=29) || (m=34) || (m=39) || (m=44) || (m=49) || (m=54) || (m=59)){
   individualPixels[min1]=1;
   individualPixels[min2]=1;
   individualPixels[min3]=1;
   individualPixels[min4]=1;
   }
-  else {
-  individualPixels[min1]=0;
-  individualPixels[min2]=0;
-  individualPixels[min3]=0;
-  individualPixels[min4]=0;
 
-  }
-}
 
-if (NightDim >= 1) { // Dim Pixels by declared value between 10 pm and 6 am
-  if ((isPM()==true) && (h>=10) || (isAM()==true) && (h<=6)) 
-  {PMr=PMr/NightDim;
-  PMg=PMg/NightDim;
-  PMb=PMb/NightDim;
-  AMr=AMr/NightDim;
-  AMg=AMg/NightDim;
-  AMb=AMb/NightDim;}
   }
 
   
