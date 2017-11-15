@@ -117,8 +117,8 @@ individualPixels[i]=0;
   Serial.println(s);
 
   
-  /* Minutes 1 and 6 - Light EdgePixel + */
-  if ((m=1) || (m=6) || (m=11) || (m=16) || (m=21) || (m=26) || (m=31) || (m=36) || (m=41) || (m=46) || (m=51) || (m=56)){ 
+ /* Minutes 1 and 6 - Light EdgePixel + */
+  while ((m=1) || (m=6) || (m=11) || (m=16) || (m=21) || (m=26) || (m=31) || (m=36) || (m=41) || (m=46) || (m=51) || (m=56)){ 
   individualPixels[min1]=1;
     individualPixels[min2]=0;
     individualPixels[min3]=0;
@@ -127,7 +127,7 @@ individualPixels[i]=0;
   }
   
   /* Minutes 2 and 7 - Light EdgePixel ++ */
-  if ((m=2) || (m=7) || (m=12) || (m=17) || (m=22) || (m=27) || (m=32) || (m=37) || (m=42) || (m=47) || (m=52) || (m=57)){
+  while ((m=2) || (m=7) || (m=12) || (m=17) || (m=22) || (m=27) || (m=32) || (m=37) || (m=42) || (m=47) || (m=52) || (m=57)){
   individualPixels[min1]=1;
   individualPixels[min2]=1;
     individualPixels[min3]=0;
@@ -135,7 +135,7 @@ individualPixels[i]=0;
   }
   
   /* Minutes 3 and 8 - Light EdgePixel +++ */
-  if ((m=3) || (m=8) || (m=13) || (m=18) || (m=23) || (m=28) || (m=33) || (m=38) || (m=43) || (m=48) || (m=53) || (m=58)){
+  while ((m=3) || (m=8) || (m=13) || (m=18) || (m=23) || (m=28) || (m=33) || (m=38) || (m=43) || (m=48) || (m=53) || (m=58)){
   individualPixels[min1]=1;
   individualPixels[min2]=1;
   individualPixels[min3]=1;
@@ -143,14 +143,22 @@ individualPixels[i]=0;
   }
   
   /* Minutes 4 and 9 - Light EdgePixel ++++ */
-  if ((m=4) || (m=9) || (m=14) || (m=19) || (m=24) || (m=29) || (m=34) || (m=39) || (m=44) || (m=49) || (m=54) || (m=59)){
+  while ((m=4) || (m=9) || (m=14) || (m=19) || (m=24) || (m=29) || (m=34) || (m=39) || (m=44) || (m=49) || (m=54) || (m=59)){
   individualPixels[min1]=1;
   individualPixels[min2]=1;
   individualPixels[min3]=1;
   individualPixels[min4]=1;
   }
 
-
+ /* Minutes 5 and 0 - Light no EdgePixel */
+  while ((m=5) || (m=10) || (m=15) || (m=20) || (m=25) || (m=30) || (m=35) || (m=40) || (m=45) || (m=50) || (m=55) || (m=0)){
+  individualPixels[min1]=0;
+  individualPixels[min2]=0;
+  individualPixels[min3]=0;
+  individualPixels[min4]=0;
+  }
+ 
+  
   }
 
   
