@@ -15,8 +15,12 @@
 #include <Adafruit_NeoPixel.h>
 #include <avr/power.h>
 #include <TimeLib.h>
-#include "WordMatrix.h"
-#include "Pins.h"
+
+#define MINUS 4 			// Declare pin for + Button
+#define PLUS  5 			// Declare pin for - Button
+#define PIN           3 	// Declare pin for NeoPixel DATA IN
+#define NUMPIXELS     25	// Declare amount of NeoPixels used
+
 
 //---------------------------------------------------START-OF-USER-DEFINED-SETUP-AREA
 
@@ -46,6 +50,54 @@ int PMb=244;
 
 //-----------------------------------------------------END-OF-USER-DEFINED-SETUP-AREA
 
+/*
+--------------WORMATRIX-----------------
+Use this to define the sequence of words by number used in your word matrix
+-predefined by sargantana 2017
+ESKISTLFÜNF
+UZEHNFMVORG
+DREIVIERTEL
+NACHVORHALB
+XFÜNFRSZWEI
+SIEBENAVIER
+ZEHNTGSECHS
+LDREIUACHTJ
+ELFNEUNEINS
+BZWÖLFRHUHR
+*/
+
+//--------------------------------------------------------------------------
+
+#define IT			0
+#define IS			1
+#define FIVE_min	2
+#define TEN_min		4
+#define QUARTER		6
+#define QUARTER2	5  //as these longer words tend to need more LEDs
+#define HALF		7
+#define PAST		9
+#define TO			8
+#define TO2         3
+#define ONE			21
+#define TWO			11
+#define THREE		18
+#define FOUR		12
+#define FIVE		10
+#define SIX			16
+#define SEVEN		14
+#define SEVEN2		13  //as these longer words tend to need more LEDs
+#define EIGHT		17
+#define NINE		20
+#define TEN			15
+#define ELEVEN		19
+#define TWELVE		23
+#define OCLOCK		22
+#define min1			27 //EdgePixel 1
+#define min2			26 //EdgePixel 2
+#define min3			25 //EdgePixel 3
+#define min4		24 //EdgePixel 4
+//--------------------------------------------------------------------------
+
 // Use NeoPixel libary to set up your strip
 Adafruit_NeoPixel pixels = Adafruit_NeoPixel(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
 
@@ -59,6 +111,7 @@ int plusCurrState=HIGH;
 int h;
 int m;
 int s;
+int m_;
 
 void setup()
 {
@@ -108,6 +161,7 @@ individualPixels[i]=0;
   /* Get current time */
   h=hourFormat12();    // Returns the hour of current time in 12h format
   m=minute();        // Returns the minute of current time
+  m_=m % 5;         // Gives the last digit of minutes to m_
   s=second();        // Returns the second of current time		
   
   Serial.print(h);   // for serial debugging print out the current time
@@ -118,7 +172,7 @@ individualPixels[i]=0;
 
   
  /* Minutes 1 and 6 - Light EdgePixel + */
-  while ((m=1) || (m=6) || (m=11) || (m=16) || (m=21) || (m=26) || (m=31) || (m=36) || (m=41) || (m=46) || (m=51) || (m=56)){ 
+  if (m_=1){ 
   individualPixels[min1]=1;
     individualPixels[min2]=0;
     individualPixels[min3]=0;
@@ -127,7 +181,7 @@ individualPixels[i]=0;
   }
   
   /* Minutes 2 and 7 - Light EdgePixel ++ */
-  while ((m=2) || (m=7) || (m=12) || (m=17) || (m=22) || (m=27) || (m=32) || (m=37) || (m=42) || (m=47) || (m=52) || (m=57)){
+  if (m_=2){
   individualPixels[min1]=1;
   individualPixels[min2]=1;
     individualPixels[min3]=0;
@@ -135,7 +189,7 @@ individualPixels[i]=0;
   }
   
   /* Minutes 3 and 8 - Light EdgePixel +++ */
-  while ((m=3) || (m=8) || (m=13) || (m=18) || (m=23) || (m=28) || (m=33) || (m=38) || (m=43) || (m=48) || (m=53) || (m=58)){
+  if (m_=3){
   individualPixels[min1]=1;
   individualPixels[min2]=1;
   individualPixels[min3]=1;
@@ -143,7 +197,7 @@ individualPixels[i]=0;
   }
   
   /* Minutes 4 and 9 - Light EdgePixel ++++ */
-  while ((m=4) || (m=9) || (m=14) || (m=19) || (m=24) || (m=29) || (m=34) || (m=39) || (m=44) || (m=49) || (m=54) || (m=59)){
+  if (m_=4){
   individualPixels[min1]=1;
   individualPixels[min2]=1;
   individualPixels[min3]=1;
@@ -151,16 +205,12 @@ individualPixels[i]=0;
   }
 
  /* Minutes 5 and 0 - Light no EdgePixel */
-  while ((m=5) || (m=10) || (m=15) || (m=20) || (m=25) || (m=30) || (m=35) || (m=40) || (m=45) || (m=50) || (m=55) || (m=0)){
+  if (m_=0){
   individualPixels[min1]=0;
   individualPixels[min2]=0;
   individualPixels[min3]=0;
   individualPixels[min4]=0;
   }
- 
-  
-  }
-
   
   /* Parse time values to light corresponding pixels */
   individualPixels[IT]=1; //Light "IT"
@@ -244,7 +294,7 @@ individualPixels[i]=0;
 
   /* Minutes between 20-60 - MODIFY CURRENT HOUR VALUE */
   if (m>=20){
-    h++; //Add 1 from current hour
+    h++; //Add 1 to current hour
     /*Set time to twelve for hour around midnight, noon */
     if (h==0){
       h=12; 
@@ -324,7 +374,7 @@ individualPixels[i]=0;
     }
       else{
         if (isPM() == true){
-        pixels.setPixelColor(i, pixels.Color(PMr, PMg, PMb)); //Set Neopixel color to PM Settings
+        pixels.setPixelColor(i, pixels.Color(PMr,PMg,PMb)); //Set Neopixel color to PM Settings
     }
       }
     }
